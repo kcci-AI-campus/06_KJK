@@ -4,7 +4,7 @@
 > **Detect the Driver. Analyze the Condition. Prevent the Danger.**  
 > 운전자를 감지하고, 상태를 분석하고, 위험을 예방한다.
 
-![DRIVER-SENSE 실행 화면](./image/face2.png)
+![DRIVER-SENSE 실행 화면](./assets/face2.png)
 
 ## 📌 Project Overview | 프로젝트 소개
 
@@ -29,18 +29,27 @@
 
 | 구분 | 내용 |
 |:---:|---|
-| 01 | [👥 팀 소개](./section/Team%20Introduction.md) |
-| 02 | [✨ 주요 기능](./section/Key%20Features.md) |
-| 03 | [💻 개발 환경](./section/Development%20Environment.md) |
-| 04 | [🔩 준비물](./section/Materials.md) |
-| 05 | [🚦 운전자 상태](./section/Driver%20Status.md) |
-| 06 | [🔄 시스템 동작 과정](./section/System%20Workflow.md) |
-| 07 | [📅 개발 이력](./daily/driver_drowsiness_project_development_history_v2.md) |
-| 08 | [👥 팀원별 최종 역할](./section/Team%20Roles.md) |
-| 09 | [🔌 GPIO 구성](./section/GPIO%20Configuration.md) |
-| 10 | [⚠️ 현재 개선 사항](./section/Current%20Limitations.md) |
-| 11 | [🎯 프로젝트 목표](./section/Project%20Goals.md) |
+| 01 | 👥 팀 소개 |
+| 02 | ✨ 주요 기능 |
+| 03 | 💻 개발 환경 |
+| 04 | 🔩 준비물 |
+| 05 | 🚦 운전자 상태 |
+| 06 | 🔄 시스템 동작 과정 |
+| 07 | 📅 개발 이력 |
+| 08 | 👥 팀원별 최종 역할 |
+| 09 | 🔌 GPIO 구성 |
+| 10 | ⚠️ 현재 개선 사항 |
+| 11 | 🎯 프로젝트 목표 |
 
+---
+## 📑 Project Documents
+
+- [📅 개발 히스토리](./docs/project%20development%20history_final_v9_2026.09.28.md)
+- [📘 V9 코드 설명서](./docs/DriverSense_V9_코드설명서.md)
+- [🔄 State Machine](./docs/state_machine/DriverSense_State_Diagram.png)
+- [✅ V5 로직 검증 체크리스트](./docs/evaluation/DriverSense_v5_final_demo_checklist.md)
+- [📊 V9 성능평가 체크리스트](./docs/evaluation/DriverSense_V9_성능평가_테스트_체크리스트.md)
+- [📈 최종 성능평가 결과](./docs/evaluation/DriverSense_V9_ABC_ver2_성능평가_분석결과.md)
 ---
 
 ## 👥 Team Introduction | 팀 소개
@@ -103,7 +112,7 @@
 | **개발 언어** | Python | 영상 처리, 상태 판단 및 하드웨어 제어 구현 |
 | **영상 처리** | OpenCV | 웹캠 영상 입력과 실시간 영상 분석 |
 | **데이터 처리** | NumPy | 영상 데이터 처리 및 수치 연산 |
-| **얼굴 검출** | Haar Cascade | 운전자 얼굴 검출 |
+| **얼굴 특징점 추출** | MediaPipe Face Landmarker | 얼굴·눈·입·홍채 Landmark 추출 |
 | **하드웨어 제어** | GPIO | LED 출력 및 누름버튼 입력 처리 |
 | **카메라 입력 형식** | MJPG | 웹캠 프레임 처리 성능 개선 |
 | **형상 관리** | Git / GitHub | 소스 코드 관리, 개발 이력 기록 및 팀원 간 공유 |
@@ -154,7 +163,7 @@
 
 ---
 
-## 🔄 System Workflow | 시스템 동작 과정 ![시스템 동작 과정](./image/state%20diagram.png)
+## 🔄 System Workflow | 시스템 동작 과정 ![시스템 동작 과정](./docs/state_machine/DriverSense_State_Diagram.png)
 
 | 단계 | 처리 과정 | 주요 내용 |
 |:---:|---|---|
@@ -184,7 +193,7 @@
 | **시스템 연동 및 테스트** | 영상 분석 결과와 GPIO 제어 연결, 상태 전환 및 초기화 동작 점검 |
 | **문서화 및 발표 준비** | README 작성, 팀 역할 정리, 개발 이력 및 발표 자료 구성 |
 
-**📂 [상세 개발 이력 보기](./daily/driver_drowsiness_project_development_history_v2.md)**
+**📂 [상세 개발 이력 보기](./docs/project%20development%20history_final_v9_2026.09.28.md)**
 
 ---
 
@@ -253,6 +262,7 @@
 | **GPIO27** | 상태 표시 LED | 운전자 상태에 따른 시각적 출력 |
 | **GPIO22** | 상태 표시 LED | 운전자 상태에 따른 시각적 출력 |
 | **GPIO23** | Push Button | 경고 확인 및 초기화 입력 |
+| **GPIO18** | Active Buzzer | 위험 상태에 따른 소리 경고 |
 
 LED는 상태 판단 결과를 시각적으로 전달하며, Push Button은 운전자가 경고를 확인했다는 입력으로 사용합니다. 상태별 LED 동작과 버튼 입력 후 초기화 범위는 전체 연동 테스트를 통해 점검하고 있습니다.
 
